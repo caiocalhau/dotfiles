@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+if [ "$#" -lt 1 ]; then
+    echo 'Usage: setup-meditations /path/to/meditations [installer options]' >&2
+    exit 2
+fi
+meditations_checkout=$1
+shift
+if [ ! -f "$meditations_checkout/scripts/install.py" ]; then
+    echo 'The checkout must contain scripts/install.py' >&2
+    exit 1
+fi
+exec python3 "$meditations_checkout/scripts/install.py" "$@"

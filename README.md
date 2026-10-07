@@ -166,6 +166,26 @@ Stowing the `codex` folder places stable Codex configuration while leaving runti
 
 The two Stow commands intentionally use different link layouts: `.codex` keeps file-level links so runtime state stays local, while skills use directory links. Codex skips symlinked `SKILL.md` files, so do not apply `--no-folding` to `.agents/skills`. Existing file-level skill links need to be unstowed and their empty directories removed before Stow can create directory links.
 
+
+### meditations
+
+Stow the portable setup command, then point it at your local Meditations checkout:
+
+```bash
+cd ~/dotfiles
+stow meditations
+setup-meditations /path/to/meditations
+```
+
+The guided installer creates the helper environment and Codex skill-folder links,
+then configures the private vault on this machine. It also accepts `--workspace`,
+`--timezone`, and `--language` for noninteractive setup. Run it once on Linux/WSL
+and once on macOS, using each machine's actual checkout and vault paths.
+
+The skill source stays in the Meditations repository. Generated absolute links,
+virtual environments, vault settings and notes are local; do not commit them here.
+The existing zsh configuration adds `~/.local/bin` on both operating systems.
+
 ### opencode
 
 Stowing the `opencode` folder places custom configuration under `~/.config/opencode/`:
