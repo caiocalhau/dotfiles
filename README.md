@@ -82,7 +82,8 @@ Clone the repo and stow the packages:
 git clone -b main https://github.com/caiocalhau/dotfiles ~/dotfiles
 cd ~/dotfiles
 stow tmux nvim zsh kitty opencode
-stow --no-folding codex
+stow --no-folding --ignore="^\.agents$" --ignore="^skills-lock\.json$" codex
+stow --ignore="^\.codex$" --ignore="^skills-lock\.json$" codex
 ```
 
 To stow or restow individually:
@@ -98,7 +99,8 @@ stow -D tmux
 stow -R tmux
 
 # Keep Codex runtime state outside the dotfiles repository
-stow -R --no-folding codex
+stow -R --no-folding --ignore="^\.agents$" --ignore="^skills-lock\.json$" codex
+stow -R --ignore="^\.codex$" --ignore="^skills-lock\.json$" codex
 ```
 
 ## Usage
@@ -161,6 +163,8 @@ Stowing the `codex` folder places stable Codex configuration while leaving runti
 - **`~/.codex/AGENTS.md`** — global working agreements and coding preferences.
 - **`~/.codex/config.toml`** — durable user configuration.
 - **`~/.agents/skills/`** — Codex-native changelog, PR, and teaching skills.
+
+The two Stow commands intentionally use different link layouts: `.codex` keeps file-level links so runtime state stays local, while skills use directory links. Codex skips symlinked `SKILL.md` files, so do not apply `--no-folding` to `.agents/skills`. Existing file-level skill links need to be unstowed and their empty directories removed before Stow can create directory links.
 
 ### opencode
 
