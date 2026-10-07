@@ -1,0 +1,39 @@
+[default]
+mode = "clock"
+color = "evangelion"
+size = 1
+# Display keys here apply to every mode unless a mode section overrides them.
+show_seconds = true
+show_millis = false
+
+[clock]
+show_date = true
+timezone = "America/Sao_Paulo"
+widget_themes = ["evangelion"]
+
+[[clock.widgets]]
+title = "GitHub pending"
+command = "ghpending"
+refresh_secs = 900
+
+[[clock.widgets]]
+title = "Weather"
+group = "weather"
+command = ["sh", "-c", "curl -s 'https://wttr.in/Curitiba?0&Q&M'"]
+refresh_secs = 1800
+
+[[clock.widgets]]
+title = "Google Calendar"
+command = "google-calendar-tui"
+refresh_secs = 3600
+
+[[clock.widgets]]
+title = ""
+command = "tclock-system-health"
+refresh_secs = 300
+position = "bottom"
+
+[[clock.widgets.popup_actions]]
+key = "d"
+label = "details"
+args = ["--details"]
