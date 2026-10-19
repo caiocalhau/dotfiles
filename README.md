@@ -166,6 +166,14 @@ Stowing the `codex` folder places stable Codex configuration while leaving runti
 
 The two Stow commands intentionally use different link layouts: `.codex` keeps file-level links so runtime state stays local, while skills use directory links. Codex skips symlinked `SKILL.md` files, so do not apply `--no-folding` to `.agents/skills`. Existing file-level skill links need to be unstowed and their empty directories removed before Stow can create directory links.
 
+Humanizer is vendored under `codex/.agents/skills/humanizer/` at version **3.1.0**, pinned to upstream commit [`8c307f367c91bd974002f10f2be2965d642c13df`](https://github.com/blader/humanizer/tree/8c307f367c91bd974002f10f2be2965d642c13df). Only the unmodified `SKILL.md`, `agents/openai.yaml`, and MIT `LICENSE` are installed. No upstream scripts, plugin manifests, workflows, dependencies, or updater are installed. The `ref` in `codex/skills-lock.json` pins the revision; `computedHash` records the installed folder using the Skills CLI algorithm (SHA-256 of sorted relative file paths and their bytes). The hash is an integrity record, not a runtime enforcement mechanism.
+
+The 2026-10-19 review found no credential access, network commands, hooks, or self-update instructions in these files. Humanizer supplies model instructions and can influence edits, including rewriting prose in a named file; this review does not guarantee model behavior. It preserves factual claims and instructs the model to treat supplied text as material rather than instructions.
+
+Updates require explicit approval and review of a new full commit SHA. Export only the same three files from that revision, compare their contents, and update the lock's `ref` and folder hash. Do not use an unpinned `npx skills add` or a bulk installer/update command to replace this reviewed subset: a generic installer may copy additional upstream files. The installed skill has no automatic update mechanism.
+
+Use `$humanizer` when editing prose. For a document intended for other reviewers, specify the audience and request a standalone document with no references to the private chat. Humanizer's embedded mode returns only the final text, its chatbot-residue rule removes conversational wrappers, and its technical voice stays neutral. Keep background that those reviewers need, even if it was already discussed in the chat.
+
 
 ### meditations
 

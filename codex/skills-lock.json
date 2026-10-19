@@ -7,6 +7,13 @@
       "skillPath": "skills/hallmark/SKILL.md",
       "computedHash": "579f86b27cdd7eb972107f7aecedd537f472891c5fd7c7c821bea15f64e0fe86"
     },
+    "humanizer": {
+      "source": "blader/humanizer",
+      "sourceType": "github",
+      "ref": "8c307f367c91bd974002f10f2be2965d642c13df",
+      "skillPath": "SKILL.md",
+      "computedHash": "54876d617a4a537aa81a60c9d9c8bca7ee252e4fea280a35b2464244507fb043"
+    },
     "ui-ux-pro-max": {
       "source": "nextlevelbuilder/ui-ux-pro-max-skill",
       "sourceType": "github",
